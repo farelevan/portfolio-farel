@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,9 +25,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener('error', (event) => {
+                if (event.filename && event.filename.includes('chrome-extension')) {
+                  event.stopImmediatePropagation();
+                }
+              }, true);
+              window.addEventListener('unhandledrejection', (event) => {
+                if (event.reason && event.reason.stack && event.reason.stack.includes('chrome-extension')) {
+                  event.stopImmediatePropagation();
+                }
+              }, true);
+            `,
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <SmoothScroll />
         {children}
       </body>
     </html>
