@@ -36,29 +36,35 @@ export default function Process() {
     }, [])
 
     return (
-        <section ref={containerRef} className="py-40 px-6 bg-[#050505] relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+        <section ref={containerRef} className="py-40 px-6 relative overflow-hidden bg-transparent">
+            {/* Top Border Divider */}
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
 
-            <div className="max-w-4xl mx-auto">
-                <div className="mb-20 text-center">
-                    <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-white mb-4">Workflow.exe</h2>
-                    <div className="inline-block px-4 py-1 rounded bg-zinc-900 border border-white/5 text-zinc-500 font-mono text-xs uppercase animate-pulse">Status: Operational</div>
+            <div className="max-w-5xl mx-auto">
+                <div className="mb-24 text-center">
+                    <span className="text-blue-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
+                        04. The Method
+                    </span>
+                    <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white">System <span className="text-gradient-expressive">Architecture.</span></h2>
                 </div>
 
-                <div className="space-y-12 font-mono">
+                <div className="space-y-4">
                     {STEPS.map((step, index) => (
-                        <div key={index} className="process-line group flex flex-col md:flex-row md:items-center gap-4 border-l border-white/5 pl-8 md:pl-12 relative">
-                            <div className="absolute left-[-5px] top-2 w-2 h-2 rounded-full bg-zinc-800 transition-colors duration-300 group-hover:bg-purple-accent group-hover:shadow-[0_0_10px_var(--accent-purple)]" />
+                        <div key={index} className="process-line group flex flex-col md:flex-row md:items-center gap-8 p-10 rounded-[2.5rem] bg-slate-900/10 border border-white/0 hover:border-white/5 hover:bg-slate-900/30 transition-all duration-500 relative">
+                            <div className="flex items-center gap-6 md:w-1/3">
+                                <span className="text-zinc-600 font-mono text-xs">0{index + 1}</span>
+                                <span className={`text-2xl md:text-3xl font-black uppercase tracking-tighter transition-all duration-300 ${step.accent}`}>
+                                    {step.label}
+                                </span>
+                            </div>
 
-                            <span className={`text-2xl md:text-4xl font-bold uppercase tracking-widest transition-all duration-300 group-hover:scale-105 ${step.accent}`}>
-                                {step.label}
-                            </span>
-
-                            <span className="hidden md:block h-px flex-1 bg-white/5" />
-
-                            <p className="text-zinc-500 text-sm md:text-lg group-hover:text-zinc-300 transition-colors">
+                            <p className="text-zinc-500 text-lg group-hover:text-zinc-300 transition-colors font-light">
                                 {step.desc}
                             </p>
+
+                            <div className="absolute right-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-600"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>
+                            </div>
                         </div>
                     ))}
                 </div>

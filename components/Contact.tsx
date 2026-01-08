@@ -46,52 +46,64 @@ export default function Contact() {
     return (
         <section
             ref={containerRef}
-            className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden py-32"
+            id="contact"
+            className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden py-32 bg-transparent"
         >
-            {/* Converging Gradient background */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-radial from-purple-accent/10 to-transparent blur-[120px] rounded-full" />
+            {/* Premium Glow */}
+            <div className="absolute inset-0 z-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-blue-500/5 blur-[120px] rounded-full" />
             </div>
 
-            <div className="relative z-10 text-center max-w-4xl">
-                <motion.h2
-                    initial={{ opacity: 0, y: 30 }}
+            <div className="relative z-10 text-center max-w-5xl">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    className="text-4xl md:text-8xl font-black tracking-tighter mb-12 text-white leading-[0.9]"
+                    viewport={{ once: true }}
                 >
-                    Let&apos;s create something <br />
-                    <span className="text-gradient-expressive">impactful together.</span>
-                </motion.h2>
+                    <span className="text-blue-500 font-mono text-xs tracking-[0.4em] uppercase block mb-10">
+                        03. The Connection
+                    </span>
+                    <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-12 text-white leading-[0.9]">
+                        READY TO <br />
+                        <span className="text-gradient-expressive">COLLABORATE?</span>
+                    </h2>
+                </motion.div>
 
                 <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 1 }}
-                    className="text-lg md:text-2xl text-zinc-500 mb-20 font-light"
+                    transition={{ delay: 0.3, duration: 1 }}
+                    className="text-lg md:text-xl text-zinc-500 mb-20 font-light max-w-2xl mx-auto leading-relaxed"
                 >
-                    Open for creative collaborations, technical challenges, <br /> and modern digital system building.
+                    I&apos;m currently looking for new opportunities and interesting projects to work on.
+                    Whether you have a question or just want to say hi, my inbox is always open.
                 </motion.p>
 
                 <div className="flex justify-center">
                     <button
                         id="contact-cta"
                         ref={btnRef}
-                        className="group relative px-16 py-8 rounded-full overflow-hidden scale-110"
+                        className="group relative px-16 py-8 rounded-[2rem] overflow-hidden"
                     >
-                        {/* Animated Pulse Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-purple-accent via-cyan-accent to-pink-accent opacity-90 group-hover:opacity-100 animate-gradient" />
-                        <div className="absolute inset-0 bg-white/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                        <span className="relative z-10 text-white font-black tracking-widest uppercase text-lg">
-                            Get in Touch
+                        <div className="absolute inset-0 bg-white group-hover:bg-blue-50 transition-colors duration-500" />
+                        <span className="relative z-10 text-black font-black tracking-widest uppercase text-sm">
+                            Send a Message
                         </span>
                     </button>
                 </div>
             </div>
 
-            <footer className="absolute bottom-12 text-zinc-700 text-sm font-mono tracking-widest uppercase">
-                Built with curiosity © 2024 FAREL EVAN
+            <footer className="absolute bottom-12 w-full px-12 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 pt-12">
+                <div className="text-zinc-500 text-[10px] font-bold tracking-widest uppercase">
+                    © 2026 FAREL EVAN — ALL RIGHTS RESERVED
+                </div>
+                <div className="flex gap-8">
+                    {['LinkedIn', 'Github', 'Instagram'].map(link => (
+                        <a key={link} href="#" className="text-zinc-500 hover:text-white transition-colors text-[10px] font-bold tracking-widest uppercase">
+                            {link}
+                        </a>
+                    ))}
+                </div>
             </footer>
         </section>
     )

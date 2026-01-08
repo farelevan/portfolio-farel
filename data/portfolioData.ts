@@ -27,6 +27,16 @@ export interface Certification {
     image?: string; // Optional: badge image
 }
 
+export interface Project {
+    title: string;
+    category: string;
+    description: string;
+    gradient: string;
+    shadow: string;
+    image?: string;
+    tech?: string[];
+}
+
 export const EXPERIENCES: Experience[] = [
     {
         id: "exp-1",
@@ -71,5 +81,40 @@ export const CERTIFICATIONS: Certification[] = [
         issuer: "Amazon Web Services",
         date: "2023",
         credentialUrl: "https://aws.amazon.com",
+    }
+];
+
+export const PROJECTS: Project[] = [
+    {
+        title: "Vortex Algo Trader",
+        category: "Fintech & Automation",
+        description: "High-frequency trading interface processing 50k+ events/sec with real-time WebGL data visualization.",
+        gradient: "from-blue-600/80 to-purple-600/80",
+        shadow: "shadow-blue-500/20",
+        tech: ["Next.js", "WebGL", "Rust", "WebSocket"]
+    },
+    {
+        title: "Lumina Design System",
+        category: "Infrastructure",
+        description: "A framework-agnostic component library focusing on accessibility, micro-interactions, and motion physics.",
+        gradient: "from-purple-600/80 to-pink-600/80",
+        shadow: "shadow-purple-500/20",
+        tech: ["React", "Motion", "Tailwind", "Storybook"]
+    },
+    {
+        title: "Nebula Data Pipeline",
+        category: "Cloud Engineering",
+        description: "Serverless architecture for processing petabyte-scale datasets with automated anomaly detection.",
+        gradient: "from-pink-600/80 to-orange-500/80",
+        shadow: "shadow-pink-500/20",
+        tech: ["AWS", "Node.js", "Terraform", "Python"]
+    },
+    {
+        title: "EcoSphere Simulation",
+        category: "Interactive 3D",
+        description: "Browser-based climate simulation using Three.js and Rust (Wasm) for physics calculations.",
+        gradient: "from-emerald-500/80 to-cyan-500/80",
+        shadow: "shadow-emerald-500/20",
+        tech: ["Three.js", "WebAssembly", "Rust", "Vite"]
     }
 ];

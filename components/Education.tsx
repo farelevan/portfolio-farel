@@ -5,49 +5,44 @@ import { EDUCATION } from '@/data/portfolioData'
 
 export default function Education() {
     return (
-        <section className="py-20 px-6 relative">
-            <div className="max-w-4xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-12"
-                >
-                    <h2 className="text-3xl font-bold mb-8 text-white flex items-center gap-3">
-                        <span className="w-2 h-8 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-full" />
-                        Education
-                    </h2>
+        <section className="py-40 px-6 relative bg-transparent">
+            <div className="max-w-7xl mx-auto">
+                <div className="mb-24">
+                    <span className="text-blue-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
+                        06. Educational Foundation
+                    </span>
+                    <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white">Academic <span className="text-gradient-expressive">Background.</span></h2>
+                </div>
 
-                    <div className="grid gap-6">
-                        {EDUCATION.map((edu, index) => (
-                            <motion.div
-                                key={edu.id}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/[0.07] transition-all duration-300"
-                            >
-                                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
-                                    <div>
-                                        <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
-                                            {edu.institution}
-                                        </h3>
-                                        <p className="text-zinc-400 text-sm">{edu.degree} in {edu.field}</p>
-                                    </div>
-                                    <span className="px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-medium border border-blue-500/20 w-fit">
-                                        {edu.period}
-                                    </span>
+                <div className="grid gap-8 max-w-4xl">
+                    {EDUCATION.map((edu, index) => (
+                        <motion.div
+                            key={edu.id}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            className="group p-12 rounded-[3rem] bg-slate-900/40 border border-white/5 hover:border-blue-500/20 transition-all duration-500"
+                        >
+                            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                <div>
+                                    <h3 className="text-2xl md:text-4xl font-bold text-white mb-2 tracking-tight">
+                                        {edu.institution}
+                                    </h3>
+                                    <p className="text-blue-400 text-lg">{edu.degree} in {edu.field}</p>
                                 </div>
-                                {edu.description && (
-                                    <p className="text-zinc-500 text-sm leading-relaxed">
-                                        {edu.description}
-                                    </p>
-                                )}
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
+                                <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase">
+                                    {edu.period}
+                                </span>
+                            </div>
+                            {edu.description && (
+                                <p className="mt-8 text-zinc-500 text-lg leading-relaxed font-light max-w-3xl">
+                                    {edu.description}
+                                </p>
+                            )}
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     )

@@ -1,90 +1,94 @@
 'use client'
 
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { EXPERIENCES } from '@/data/portfolioData'
 
 export default function Experience() {
     const containerRef = useRef(null)
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end end"]
-    })
 
     return (
-        <section ref={containerRef} className="py-32 px-6 relative">
-            <div className="max-w-4xl mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="mb-16 text-center"
-                >
-                    <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight">
-                        Professional <span className="text-gradient-expressive">Journey</span>
-                    </h2>
-                    <p className="text-zinc-400 max-w-2xl mx-auto">
-                        Building scalable solutions and creating impact through code.
-                    </p>
-                </motion.div>
+        <section ref={containerRef} id="experience" className="py-40 px-6 relative bg-transparent">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <span className="text-blue-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
+                            02. The Expertise
+                        </span>
+                        <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
+                            Professional <br /> <span className="text-gradient-expressive">Record.</span>
+                        </h2>
+                    </motion.div>
+                    <motion.p
+                        initial={{ opacity: 0, x: 20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="text-zinc-500 max-w-sm mb-4 font-light leading-relaxed"
+                    >
+                        A timeline of my professional growth, technical contributions, and impact in the industry.
+                    </motion.p>
+                </div>
 
-                <div className="relative">
-                    {/* Vertical Line */}
-                    <div className="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-[2px] bg-white/5 transform -translate-x-1/2 hidden md:block" />
-                    <div className="absolute left-[20px] top-0 bottom-0 w-[2px] bg-white/5 transform -translate-x-1/2 md:hidden" />
+                <div className="relative space-y-32">
+                    {EXPERIENCES.map((exp, index) => (
+                        <motion.div
+                            key={exp.id}
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.8, delay: index * 0.1 }}
+                            className="group relative grid md:grid-cols-12 gap-12"
+                        >
+                            {/* Year/Period */}
+                            <div className="md:col-span-3">
+                                <span className="text-zinc-500 font-mono text-sm tracking-widest uppercase block pt-2">
+                                    {exp.period}
+                                </span>
+                            </div>
 
-                    <div className="space-y-12">
-                        {EXPERIENCES.map((exp, index) => (
-                            <motion.div
-                                key={exp.id}
-                                initial={{ opacity: 0, y: 50 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-50px" }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                className={`relative flex flex-col md:flex-row gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''
-                                    }`}
-                            >
-                                {/* Timeline Dot */}
-                                <div className="absolute left-[20px] md:left-1/2 top-0 w-4 h-4 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.5)] transform -translate-x-1/2 z-10 mt-1.5" />
+                            {/* Content */}
+                            <div className="md:col-span-9 relative pl-12 md:pl-0 border-l border-white/5 md:border-l-0">
+                                {/* Mobile Timeline Line */}
+                                <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-white/5 md:hidden" />
 
-                                {/* Content Card */}
-                                <div className="ml-12 md:ml-0 md:w-1/2">
-                                    <div className="p-6 md:p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-colors duration-300 group">
-                                        <div className="flex flex-col gap-2 mb-4">
-                                            <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-purple-400 transition-colors">
+                                <div className="p-10 md:p-16 rounded-[3rem] bg-slate-900/40 border border-white/5 hover:border-blue-500/20 transition-all duration-700 relative overflow-hidden group-hover:-translate-y-2">
+                                    <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/5 blur-[80px] group-hover:bg-blue-500/10 transition-colors" />
+
+                                    <div className="relative z-10 flex flex-col lg:flex-row justify-between items-start gap-8">
+                                        <div className="flex-1">
+                                            <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 tracking-tight">
                                                 {exp.role}
                                             </h3>
-                                            <div className="flex flex-wrap gap-2 text-sm text-zinc-400">
-                                                <span className="font-medium text-zinc-300">{exp.company}</span>
-                                                <span>•</span>
-                                                <span>{exp.period}</span>
+                                            <p className="text-blue-400 font-medium mb-8 text-lg">
+                                                {exp.company}
+                                            </p>
+                                            <p className="text-zinc-400 text-lg leading-relaxed mb-10 font-light max-w-3xl">
+                                                {exp.description}
+                                            </p>
+
+                                            <div className="flex flex-wrap gap-3">
+                                                {exp.skills.map((skill) => (
+                                                    <span
+                                                        key={skill}
+                                                        className="px-4 py-2 text-[10px] font-bold tracking-widest uppercase rounded-xl bg-white/5 text-zinc-300 border border-white/5 hover:border-blue-500/30 transition-colors"
+                                                    >
+                                                        {skill}
+                                                    </span>
+                                                ))}
                                             </div>
-                                        </div>
-
-                                        <p className="text-zinc-400 mb-6 leading-relaxed">
-                                            {exp.description}
-                                        </p>
-
-                                        <div className="flex flex-wrap gap-2">
-                                            {exp.skills.map((skill) => (
-                                                <span
-                                                    key={skill}
-                                                    className="px-3 py-1 text-xs rounded-full bg-white/5 text-zinc-300 border border-white/10"
-                                                >
-                                                    {skill}
-                                                </span>
-                                            ))}
                                         </div>
                                     </div>
                                 </div>
-
-                                {/* Empty space for the other side of timeline on desktop */}
-                                <div className="hidden md:block md:w-1/2" />
-                            </motion.div>
-                        ))}
-                    </div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
         </section>
     )
 }
+
