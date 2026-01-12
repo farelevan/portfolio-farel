@@ -1,40 +1,40 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
-import gsap from 'gsap'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 
 export default function Hero() {
     const containerRef = useRef<HTMLDivElement>(null)
-    const titleRef = useRef<HTMLHeadingElement>(null)
+    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
     const { scrollY } = useScroll()
-    const y1 = useTransform(scrollY, [0, 500], [0, 200])
+    const y1 = useTransform(scrollY, [0, 500], [0, 150])
     const y2 = useTransform(scrollY, [0, 500], [0, -150])
-    const rotate = useTransform(scrollY, [0, 500], [0, 45])
+
+    // Mouse ease for background elements
+    const springConfig = { damping: 25, stiffness: 120 }
+    const mouseX = useSpring(0, springConfig)
+    const mouseY = useSpring(0, springConfig)
 
     useEffect(() => {
-        const ctx = gsap.context(() => {
-            const title = titleRef.current
-            if (title) {
-                const text = title.innerText
-                title.innerHTML = text.split('').map(char =>
-                    `<span class="inline-block opacity-0 translate-y-12 char-hero">${char === ' ' ? '&nbsp;' : char}</span>`
-                ).join('')
+        const handleMouseMove = (e: MouseEvent) => {
+            const { clientX, clientY } = e
+            const { innerWidth, innerHeight } = window
+            const x = clientX / innerWidth
+            const y = clientY / innerHeight
 
-                gsap.to('.char-hero', {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    stagger: 0.02,
-                    ease: 'expo.out',
-                    delay: 0.2
-                })
-            }
-        }, containerRef)
+            mouseX.set(x)
+            mouseY.set(y)
+            setMousePosition({ x: clientX, y: clientY })
+        }
 
-        return () => ctx.revert()
-    }, [])
+        window.addEventListener('mousemove', handleMouseMove)
+        return () => window.removeEventListener('mousemove', handleMouseMove)
+    }, [mouseX, mouseY])
+
+    const moveX = useTransform(mouseX, [0, 1], [-20, 20])
+    const moveY = useTransform(mouseY, [0, 1], [-20, 20])
+    const rotate = useTransform(scrollY, [0, 500], [0, 15])
 
     return (
         <section
@@ -44,72 +44,93 @@ export default function Hero() {
         >
             {/* Dynamic Background Elements */}
             <div className="absolute inset-0 z-0 pointer-events-none">
+                {/* Large Gradient Blobs */}
                 <motion.div
-                    style={{ y: y1, rotate }}
-                    className="absolute top-[10%] left-[15%] w-[30vw] h-[30vw] border border-blue-500/10 rounded-[4rem] blur-sm"
+                    style={{ y: y1, x: moveX, rotate }}
+                    className="absolute top-[5%] left-[10%] w-[40vw] h-[40vw] bg-indigo-600/10 rounded-full blur-[100px] animate-float"
                 />
                 <motion.div
-                    style={{ y: y2, rotate: -rotate }}
-                    className="absolute bottom-[10%] right-[10%] w-[25vw] h-[25vw] border border-purple-500/10 rounded-full blur-sm"
+                    style={{ y: y2, x: moveY, rotate: -rotate }}
+                    className="absolute bottom-[10%] right-[10%] w-[35vw] h-[35vw] bg-pink-600/10 rounded-full blur-[100px] animate-float"
                 />
 
-                {/* Glows */}
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
+                {/* Floating Glass Orb */}
+                <motion.div
+                    style={{ x: useTransform(mouseX, [0, 1], [-40, 40]), y: useTransform(mouseY, [0, 1], [-40, 40]) }}
+                    className="absolute top-1/3 right-[15%] w-32 h-32 rounded-full border border-white/10 bg-white/5 backdrop-blur-md hidden md:block"
+                />
             </div>
 
-            <div className="relative z-10 text-center max-w-6xl mx-auto">
+            <div className="relative z-10 text-center max-w-5xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
+                    className="mb-8"
                 >
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/20 bg-blue-500/5 text-[10px] font-bold tracking-[0.3em] text-blue-400 uppercase mb-10">
+                    <div className="inline-flex glass-button px-4 py-2 rounded-full text-xs font-semibold tracking-widest text-indigo-300 uppercase gap-2 items-center">
                         <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
                         </span>
-                        Available for Projects
+                        Final Year Computer Science Student
                     </div>
                 </motion.div>
 
-                <h1
-                    ref={titleRef}
-                    className="text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-10 leading-[0.85] text-white"
+                <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2, duration: 0.8 }}
+                    className="text-5xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-8 leading-[0.9] text-white"
                 >
-                    BUILDING <br /> DIGITAL <br /> <span className="text-gradient-expressive">SYNERGY.</span>
-                </h1>
+                    TRANSFORMING <br />
+                    <span className="glass-text text-white/50">SYSTEMS</span> INTO <br />
+                    <span className="text-gradient-accent">SOLUTIONS.</span>
+                </motion.h1>
 
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8, duration: 0.8 }}
-                    className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto font-light leading-relaxed mb-12"
+                    transition={{ delay: 0.4, duration: 0.8 }}
+                    className="text-lg md:text-xl text-zinc-300 max-w-2xl mx-auto leading-relaxed mb-12 font-light"
                 >
-                    Farel Evan — A Creative Developer blending <span className="text-white font-medium">high-performance engineering</span> with
-                    <span className="text-white font-medium"> meticulous design</span> to create systems that resonate.
+                    I synthesize <span className="text-white font-medium">technical mastery</span>, <span className="text-white font-medium">system architecture</span>, and <span className="text-white font-medium">business perspective</span> to build efficient, secure, and scalable digital ecosystems.
                 </motion.p>
 
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 1.2, duration: 1 }}
+                    transition={{ delay: 0.6, duration: 1 }}
                     className="flex flex-col md:flex-row items-center justify-center gap-6"
                 >
-                    <a href="#projects" className="group relative px-10 py-5 rounded-2xl overflow-hidden transition-all duration-500">
-                        <div className="absolute inset-0 bg-white" />
-                        <span className="relative z-10 text-black font-bold tracking-widest uppercase text-xs">
-                            View Portfolio
-                        </span>
+                    <a
+                        href="#projects"
+                        className="glass-button px-8 py-4 rounded-xl text-white font-semibold tracking-wide hover:bg-white/10 transition-all flex items-center gap-2 group"
+                    >
+                        Explore My Work
+                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
                     </a>
-                    <a href="#contact" className="px-10 py-5 rounded-2xl border border-white/10 hover:bg-white/5 transition-all text-white font-bold tracking-widest uppercase text-xs">
-                        Start a Project
+                    <a
+                        href="#contact"
+                        className="px-8 py-4 rounded-xl text-zinc-400 hover:text-white font-medium transition-colors border border-transparent hover:border-white/10"
+                    >
+                        Contact Me
                     </a>
                 </motion.div>
             </div>
 
-            {/* Bottom Gradient Fade */}
-            <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+            {/* Scroll Indicator */}
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1, duration: 1 }}
+                className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+            >
+                <span className="text-xs text-zinc-500 uppercase tracking-widest">Scroll</span>
+                <div className="w-px h-12 bg-linear-to-b from-zinc-500 to-transparent"></div>
+            </motion.div>
         </section>
     )
 }

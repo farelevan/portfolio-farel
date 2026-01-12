@@ -7,13 +7,37 @@ import { motion } from 'framer-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const SKILLS = [
-    { name: "Web Development", gradient: "from-purple-600 to-blue-600" },
-    { name: "Automation", gradient: "from-blue-600 to-cyan-600" },
-    { name: "React / Next.js", gradient: "from-cyan-600 to-emerald-600" },
-    { name: "Data Handling", gradient: "from-emerald-600 to-pink-600" },
-    { name: "System Thinking", gradient: "from-pink-600 to-purple-600" },
-    { name: "GSAP / Motion", gradient: "from-orange-500 to-red-500" }
+const SKILLS_CATEGORIES = [
+    {
+        title: "Software & Web Development",
+        description: "Building modern, scalable web applications.",
+        gradient: "from-blue-600 to-indigo-600",
+        skills: ["React & Next.js", "TypeScript / JavaScript", "TailwindCSS & Designs", "API Integration", "Clean Code Architecture"]
+    },
+    {
+        title: "Systems & Digital Transformation",
+        description: "Designing institutional-scale information systems.",
+        gradient: "from-emerald-600 to-teal-600",
+        skills: ["SIAKAD Development", "Enterprise Systems", "Business Process Analysis", "System Digitalization", "Requirement Analysis"]
+    },
+    {
+        title: "Blockchain & Web3",
+        description: "Implementing secure, decentralized solutions.",
+        gradient: "from-purple-600 to-pink-600",
+        skills: ["Smart Contracts", "Ethereum & Polygon", "Decentralized Data", "Web3 Security", "Blockchain Medical Records"]
+    },
+    {
+        title: "Data & Architecture",
+        description: "Managing data flow and system integrity.",
+        gradient: "from-orange-500 to-red-500",
+        skills: ["Data Validation", "System Logic Design", "Database Handling", "Data-Driven Decisions", "Security Best Practices"]
+    },
+    {
+        title: "Leadership & Strategy",
+        description: "Leading teams and bridging technical communication.",
+        gradient: "from-cyan-600 to-blue-500",
+        skills: ["Team Leadership", "Project Management", "Technical Communication", "Stakeholder Collaboration", "Conflict Management"]
+    }
 ]
 
 export default function Skills() {
@@ -26,11 +50,11 @@ export default function Skills() {
                     trigger: containerRef.current,
                     start: "top 75%",
                 },
-                scale: 0.8,
+                y: 50,
                 opacity: 0,
                 duration: 0.8,
                 stagger: 0.1,
-                ease: "back.out(1.7)"
+                ease: "power3.out"
             })
         }, containerRef)
 
@@ -38,28 +62,44 @@ export default function Skills() {
     }, [])
 
     return (
-        <section ref={containerRef} className="py-40 px-6 relative bg-transparent">
+        <section ref={containerRef} className="py-32 px-6 relative bg-transparent">
+            {/* Background Glow */}
+            <div className="absolute center w-[800px] h-[400px] bg-blue-900/10 rounded-full blur-[120px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+
             <div className="max-w-7xl mx-auto">
-                <div className="mb-24 text-center">
-                    <span className="text-blue-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
-                        05. Technical Stack
+                <div className="mb-20 text-center">
+                    <span className="text-zinc-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
+                        // 02. Expertise
                     </span>
-                    <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white">Technological <span className="text-gradient-expressive">Arsenal.</span></h2>
+                    <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6">
+                        Technical <span className="text-gradient-accent">Arsenal.</span>
+                    </h2>
+                    <p className="text-zinc-400 max-w-2xl mx-auto">
+                        A comprehensive toolkit for building robust, scalable, and modern digital solutions across various domains.
+                    </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {SKILLS.map((skill, index) => (
+                    {SKILLS_CATEGORIES.map((category, index) => (
                         <motion.div
                             key={index}
                             whileHover={{ y: -5 }}
-                            className={`skill-node group relative p-12 rounded-[2.5rem] bg-slate-900/40 border border-white/5 hover:border-blue-500/20 transition-all duration-500 overflow-hidden`}
+                            className={`skill-node group relative p-8 rounded-3xl bg-slate-900/40 border border-white/5 hover:border-white/10 transition-all duration-300 overflow-hidden flex flex-col h-full`}
                         >
-                            <div className={`absolute inset-0 bg-gradient-to-br ${skill.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-700`} />
+                            <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-[0.05] transition-opacity duration-500`} />
 
-                            <div className="relative z-10">
-                                <div className={`w-2 h-10 rounded-full mb-8 bg-gradient-to-b ${skill.gradient}`} />
-                                <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{skill.name}</h3>
-                                <p className="text-zinc-500 text-sm font-light">Expertise in building scalable systems and interactive interfaces.</p>
+                            <div className="relative z-10 flex-1">
+                                <div className={`w-12 h-1 rounded-full mb-6 bg-linear-to-r ${category.gradient}`} />
+                                <h3 className="text-2xl font-bold text-white mb-3 tracking-tight">{category.title}</h3>
+                                <p className="text-zinc-500 text-sm mb-6 leading-relaxed min-h-[40px]">{category.description}</p>
+
+                                <div className="flex flex-wrap gap-2">
+                                    {category.skills.map((skill, i) => (
+                                        <span key={i} className="px-3 py-1 rounded-full bg-white/5 border border-white/5 text-xs text-zinc-300">
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </motion.div>
                     ))}

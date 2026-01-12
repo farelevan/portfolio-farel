@@ -1,19 +1,19 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence, useScroll } from 'framer-motion'
+import { motion, useScroll } from 'framer-motion'
 
 const NAV_ITEMS = [
-    { name: 'Home', href: '#' },
+    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Services', href: '#skills' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
 ]
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
-
     const { scrollYProgress } = useScroll()
 
     useEffect(() => {
@@ -32,7 +32,7 @@ export default function Navbar() {
         >
             <div className={`
                 flex items-center gap-2 px-6 py-3 rounded-full 
-                ${scrolled ? 'bg-slate-900/40 backdrop-blur-xl border border-white/10 shadow-2xl' : 'bg-transparent'}
+                ${scrolled ? 'bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl' : 'bg-transparent border border-transparent'}
                 transition-all duration-500 relative overflow-hidden
             `}>
                 {/* Scroll Progress Indicator */}
@@ -48,7 +48,7 @@ export default function Navbar() {
                         className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors relative group"
                     >
                         {item.name}
-                        <span className="absolute bottom-0 left-4 right-4 h-[1px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-center" />
+                        <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-300" />
                     </a>
                 ))}
             </div>
