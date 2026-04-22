@@ -42,8 +42,8 @@ export default function Process() {
 
             <div className="max-w-5xl mx-auto">
                 <div className="mb-24 text-center">
-                    <span className="text-blue-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
-                        04. The Method
+                    <span className="mb-4 block font-mono text-xs uppercase tracking-[0.4em] text-blue-300">
+                        The Method / 08
                     </span>
                     <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white">System <span className="text-gradient-expressive">Architecture.</span></h2>
                 </div>

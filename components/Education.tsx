@@ -8,8 +8,8 @@ export default function Education() {
         <section className="py-40 px-6 relative bg-transparent">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-24">
-                    <span className="text-blue-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
-                        06. Educational Foundation
+                    <span className="mb-4 block font-mono text-xs uppercase tracking-[0.4em] text-blue-300">
+                        Educational Foundation / 06
                     </span>
                     <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white">Academic <span className="text-gradient-expressive">Background.</span></h2>
                 </div>

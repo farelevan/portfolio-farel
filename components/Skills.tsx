@@ -62,14 +62,14 @@ export default function Skills() {
     }, [])
 
     return (
-        <section ref={containerRef} className="py-32 px-6 relative bg-transparent">
+        <section ref={containerRef} id="skills" className="section-shell relative bg-transparent px-6 py-32">
             {/* Background Glow */}
             <div className="absolute center w-[800px] h-[400px] bg-blue-900/10 rounded-full blur-[120px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto">
                 <div className="mb-20 text-center">
-                    <span className="text-zinc-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
-                        // 02. Expertise
+                    <span className="mb-4 block font-mono text-xs uppercase tracking-[0.4em] text-zinc-500">
+                        Expertise / 02
                     </span>
                     <h2 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-6">
                         Technical <span className="text-gradient-accent">Arsenal.</span>

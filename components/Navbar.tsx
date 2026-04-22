@@ -6,7 +6,7 @@ import { motion, useScroll } from 'framer-motion'
 const NAV_ITEMS = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Services', href: '#skills' },
+    { name: 'Skills', href: '#skills' },
     { name: 'Experience', href: '#experience' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
@@ -28,12 +28,11 @@ export default function Navbar() {
         <motion.nav
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 flex justify-center py-6 px-4`}
+            className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 py-5 transition-all duration-500"
         >
             <div className={`
-                flex items-center gap-2 px-6 py-3 rounded-full 
-                ${scrolled ? 'bg-slate-900/60 backdrop-blur-xl border border-white/10 shadow-2xl' : 'bg-transparent border border-transparent'}
-                transition-all duration-500 relative overflow-hidden
+                relative flex items-center gap-2 overflow-hidden rounded-full border px-3 py-2 transition-all duration-500
+                ${scrolled ? 'border-white/10 bg-slate-950/70 shadow-2xl shadow-black/30 backdrop-blur-xl' : 'border-white/5 bg-slate-950/25 backdrop-blur-md'}
             `}>
                 {/* Scroll Progress Indicator */}
                 <motion.div
@@ -45,10 +44,10 @@ export default function Navbar() {
                     <a
                         key={item.name}
                         href={item.href}
-                        className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white transition-colors relative group"
+                        className="group relative px-4 py-2 text-sm font-medium text-zinc-300/80 transition-colors hover:text-white"
                     >
                         {item.name}
-                        <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-blue-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-center duration-300" />
+                        <span className="absolute bottom-0 left-4 right-4 h-[2px] origin-center scale-x-0 bg-amber-400 transition-transform duration-300 group-hover:scale-x-100" />
                     </a>
                 ))}
             </div>

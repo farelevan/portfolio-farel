@@ -76,8 +76,8 @@ export default function Experience() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <span className="text-zinc-500 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
-                            // 03. Track Record
+                        <span className="mb-4 block font-mono text-xs uppercase tracking-[0.4em] text-zinc-500">
+                            Track Record / 03
                         </span>
                         <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
                             Professional <br /> <span className="text-gradient-accent">Experience.</span>
@@ -86,7 +86,7 @@ export default function Experience() {
                 </div>
 
                 <div className="relative space-y-12">
-                    {EXPERIENCES.map((exp, index) => (
+                    {EXPERIENCES.map((exp) => (
                         <div
                             key={exp.id}
                             className="experience-card group relative grid md:grid-cols-12 gap-8 md:gap-12"
@@ -141,4 +141,3 @@ export default function Experience() {
         </section>
     )
 }
-

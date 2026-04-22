@@ -12,7 +12,7 @@ const PROJECTS = [
         category: "Final Year Project",
         title: "Block-Med: Decentralized Medical Records",
         description: "Implemented a secure and decentralized system for storing medical diagnosis data using Ethereum Blockchain technology. Focused on backend smart contract development to ensure data integrity, privacy, and immutability.",
-        tech: ["Solidty", "Ethereum", "Smart Contracts", "Web3.js", "Backend Security"],
+        tech: ["Solidity", "Ethereum", "Smart Contracts", "Web3.js", "Backend Security"],
         gradient: "from-purple-600 to-indigo-600",
         shadow: "shadow-purple-500/20"
     },
@@ -62,7 +62,7 @@ export default function Projects() {
     }, [])
 
     return (
-        <div ref={containerRef} id="projects" className="bg-transparent overflow-hidden h-screen relative">
+        <div ref={containerRef} id="projects" className="section-shell relative h-screen overflow-hidden bg-transparent">
             {/* Background Ambience */}
             <div className="absolute top-0 left-0 w-full h-full bg-slate-950/50 pointer-events-none -z-10" />
 
@@ -78,8 +78,8 @@ export default function Projects() {
                         transition={{ duration: 0.8 }}
                         className="text-center"
                     >
-                        <span className="text-blue-400 font-mono text-xs tracking-[0.4em] uppercase block mb-6">
-                            // 04. Selected Works
+                        <span className="mb-6 block font-mono text-xs uppercase tracking-[0.4em] text-blue-300">
+                            Selected Works / 04
                         </span>
                         <h2 className="text-6xl md:text-9xl font-black italic uppercase tracking-tighter text-white select-none relative z-10 leading-[0.8]">
                             Key <br /> <span className="text-transparent stroke-text">Projects</span>
@@ -87,7 +87,7 @@ export default function Projects() {
                         <div className="mt-12 flex items-center justify-center gap-4">
                             <span className="h-[2px] w-20 bg-blue-500/50" />
                             <p className="text-zinc-400 text-sm tracking-[0.4em] uppercase">
-                                Drag to Explore
+                                Scroll to Explore
                             </p>
                             <span className="h-[2px] w-20 bg-purple-500/50" />
                         </div>

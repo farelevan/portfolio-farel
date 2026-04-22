@@ -60,11 +60,11 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <span className="text-zinc-500 font-mono text-xs tracking-[0.4em] uppercase block mb-10">
-                        // 06. What's Next?
+                    <span className="mb-10 block font-mono text-xs uppercase tracking-[0.4em] text-zinc-500">
+                        What&apos;s Next? / 09
                     </span>
                     <h2 className="text-5xl md:text-9xl font-black tracking-tighter mb-12 text-white leading-[0.9]">
-                        LET'S <br />
+                        LET&apos;S <br />
                         <span className="text-gradient-expressive">COLLABORATE.</span>
                     </h2>
                 </motion.div>
@@ -75,12 +75,12 @@ export default function Contact() {
                     transition={{ delay: 0.3, duration: 1 }}
                     className="text-lg md:text-2xl text-zinc-400 mb-20 font-light max-w-2xl mx-auto leading-relaxed"
                 >
-                    I'm currently engaged in final year research but open to discussing <span className="text-white">high-impact projects</span> or consulting opportunities.
+                    I&apos;m currently focused on final year research, but still open to discussing <span className="text-white">high-impact projects</span> and thoughtful collaborations.
                 </motion.p>
 
                 <div className="flex justify-center">
                     <a
-                        href="mailto:contact@farelevan.com"
+                        href="mailto:farelevan@gmail.com"
                         id="contact-cta"
                         ref={btnRef}
                         className="group relative px-16 py-8 rounded-[2rem] overflow-hidden glass-button bg-white/5 border border-white/10"
@@ -100,16 +100,16 @@ export default function Contact() {
 
             <footer className="absolute bottom-12 w-full px-12 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 pt-12">
                 <div className="text-zinc-600 text-[10px] font-bold tracking-widest uppercase">
-                    © 2026 FAREL EVAN — BUILD WITH PASSION
+                    © 2026 FAREL EVAN | BUILD WITH CLARITY
                 </div>
                 <div className="flex gap-12">
-                    <a href="https://linkedin.com" target="_blank" className="text-zinc-600 hover:text-white transition-colors text-[10px] font-bold tracking-widest uppercase">
-                        LinkedIn
+                    <a href="#contact" className="text-[10px] font-bold uppercase tracking-widest text-zinc-600 transition-colors hover:text-white">
+                        Available for Select Work
                     </a>
-                    <a href="https://github.com" target="_blank" className="text-zinc-600 hover:text-white transition-colors text-[10px] font-bold tracking-widest uppercase">
-                        Github
+                    <a href="#projects" className="text-[10px] font-bold uppercase tracking-widest text-zinc-600 transition-colors hover:text-white">
+                        Featured Projects
                     </a>
-                    <a href="mailto:email@example.com" className="text-zinc-600 hover:text-white transition-colors text-[10px] font-bold tracking-widest uppercase">
+                    <a href="mailto:farelevan@gmail.com" className="text-[10px] font-bold uppercase tracking-widest text-zinc-600 transition-colors hover:text-white">
                         Email
                     </a>
                 </div>

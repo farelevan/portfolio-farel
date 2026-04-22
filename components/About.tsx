@@ -86,8 +86,8 @@ export default function About() {
                     {/* Left: Bio */}
                     <div className="lg:col-span-7">
                         <motion.div className="about-animate mb-12">
-                            <span className="text-indigo-400 font-mono text-xs tracking-[0.4em] uppercase block mb-4">
-                                // 01. Profile
+                            <span className="mb-4 block font-mono text-xs uppercase tracking-[0.4em] text-indigo-400">
+                                Profile / 01
                             </span>
                             <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-white tracking-tight">
                                 Bridging Logic & <br />
@@ -132,7 +132,7 @@ export default function About() {
 
                             <h3 className="text-2xl font-bold text-white mb-6">Future Vision</h3>
                             <p className="text-zinc-400 mb-8 leading-relaxed text-sm">
-                                "To build a sustainable technology ecosystem—encompassing digital services, automation, and education—creating real impact and a lasting legacy through technology."
+                                &ldquo;To build a sustainable technology ecosystem encompassing digital services, automation, and education, creating real impact and a lasting legacy through technology.&rdquo;
                             </p>
 
                             <div className="space-y-6 border-t border-white/5 pt-8">
@@ -163,4 +163,3 @@ export default function About() {
         </section>
     )
 }
-
